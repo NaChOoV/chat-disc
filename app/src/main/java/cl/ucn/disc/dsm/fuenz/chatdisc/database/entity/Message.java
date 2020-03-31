@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2020. This code is purely educational, the rights of use are
+ *  reserved, the owner of the code is Ignacio Fuenzalida Veas
+ *  contact ignacio.fuenzalida@alumnos.ucn.cl
+ *  Do not use in production.
+ */
+
 package cl.ucn.disc.dsm.fuenz.chatdisc.database.entity;
 
 import androidx.annotation.NonNull;
@@ -12,25 +19,50 @@ import org.threeten.bp.ZonedDateTime;
 @Entity(tableName = "conversation_reply")
 public class Message {
 
+    /*
+    The unique conversation id
+     */
     @PrimaryKey
-    private int cr_id;
-
+    private final int cr_id;
+    /*
+    The message info
+     */
     @ColumnInfo(name = "reply")
-    private String text;
-
-    private int user_id_fk;
-
-    private ZonedDateTime time;
-
-    private float latitude;
-
-    private float longitude;
-
+    private final String text;
+    /*
+    The id of the users who send the message
+     */
+    private final int user_id_fk;
+    /*
+    When de message was send
+     */
+    private final ZonedDateTime time;
+    /*
+    GPS Latitude
+     */
+    private final float latitude;
+    /*
+    GPS Longitude
+     */
+    private final float longitude;
+    /*
+    Status of the conversation
+     */
     private int status;
+    /*
+    ID of the general conversation between two users
+     */
+    private final int c_id_fk;
 
-    private int c_id_fk;
-
-
+    public Message(int cr_id, String text, int user_id_fk, ZonedDateTime time, float latitude, float longitude, int c_id_fk) {
+        this.cr_id = cr_id;
+        this.text = text;
+        this.user_id_fk = user_id_fk;
+        this.time = time;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.c_id_fk = c_id_fk;
+    }
 
     public int getCr_id() {
         return cr_id;
