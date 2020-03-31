@@ -1,4 +1,4 @@
-package cl.ucn.disc.dsm.fuenz.chatdisc.database.dao;
+package cl.ucn.disc.dsm.fuenz.chatdisc.room.dao;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Insert;
@@ -7,7 +7,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import cl.ucn.disc.dsm.fuenz.chatdisc.database.entity.Message;
+import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.Message;
 
 public interface MessageDao {
     // allowing the insert of the same word multiple times by passing a

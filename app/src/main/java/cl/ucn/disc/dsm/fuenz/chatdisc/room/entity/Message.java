@@ -5,12 +5,10 @@
  *  Do not use in production.
  */
 
-package cl.ucn.disc.dsm.fuenz.chatdisc.database.entity;
+package cl.ucn.disc.dsm.fuenz.chatdisc.room.entity;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import org.threeten.bp.ZonedDateTime;
@@ -32,7 +30,11 @@ public class Message {
     /*
     The id of the users who send the message
      */
-    private final int user_id_fk;
+    private final int user_one;
+    /*
+    The id of the user who recive the message
+     */
+    private final int user_two;
     /*
     When de message was send
      */
@@ -54,15 +56,17 @@ public class Message {
      */
     private final int c_id_fk;
 
-    public Message(int cr_id, String text, int user_id_fk, ZonedDateTime time, float latitude, float longitude, int c_id_fk) {
+    public Message(int cr_id, String text, int user_one,int user_two, ZonedDateTime time, float latitude, float longitude, int c_id_fk) {
         this.cr_id = cr_id;
         this.text = text;
-        this.user_id_fk = user_id_fk;
+        this.user_one = user_one;
+        this.user_two = user_two;
         this.time = time;
         this.latitude = latitude;
         this.longitude = longitude;
         this.c_id_fk = c_id_fk;
     }
+
 
     public int getCr_id() {
         return cr_id;
@@ -72,8 +76,12 @@ public class Message {
         return text;
     }
 
-    public int getUser_id_fk() {
-        return user_id_fk;
+    public int getUser_one() {
+        return user_one;
+    }
+
+    public int getUser_two() {
+        return user_two;
     }
 
     public ZonedDateTime getTime() {
