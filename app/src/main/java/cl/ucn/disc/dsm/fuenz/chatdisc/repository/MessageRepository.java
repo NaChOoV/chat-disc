@@ -9,6 +9,7 @@ package cl.ucn.disc.dsm.fuenz.chatdisc.repository;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
@@ -21,18 +22,18 @@ public class MessageRepository {
 
     private MessageDao messageDao;
 
-    private MutableLiveData<List<Message>> allMessages;
+    private LiveData<List<Message>> allMessages;
 
     public MessageRepository(Application application){
         MessageRoomDatabase db = MessageRoomDatabase.getDatabase(application);
 
-        messageDao = db.messageDao;
+        messageDao = db.messageDao();
         allMessages = messageDao.getAllMessageOrderByDate();
     }
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    public MutableLiveData<List<Message>> getAllMessages() {
+    public LiveData<List<Message>> getAllMessages() {
         return allMessages;
     }
 

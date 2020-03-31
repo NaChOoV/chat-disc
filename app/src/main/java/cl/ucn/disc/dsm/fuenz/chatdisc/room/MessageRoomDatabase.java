@@ -15,7 +15,7 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.Message;
 @Database(entities = {Message.class}, version = 1, exportSchema = false)
 public abstract class MessageRoomDatabase extends RoomDatabase {
 
-    public MessageDao messageDao;
+    public abstract MessageDao messageDao();
 
     private static volatile MessageRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

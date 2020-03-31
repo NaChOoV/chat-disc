@@ -11,6 +11,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class MessageViewModel extends AndroidViewModel {
 
     private MessageRepository messageRepository;
 
-    private MutableLiveData<List<Message>> allMessage;
+    private LiveData<List<Message>> allMessage;
 
     public MessageViewModel(@NonNull Application application) {
         super(application);
@@ -32,7 +33,7 @@ public class MessageViewModel extends AndroidViewModel {
         allMessage = messageRepository.getAllMessages();
     }
 
-    MutableLiveData<List<Message>> getAllMessage(){
+    LiveData<List<Message>> getAllMessage(){
         return allMessage;
     }
 

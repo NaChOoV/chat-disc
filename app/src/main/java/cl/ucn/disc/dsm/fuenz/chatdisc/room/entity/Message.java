@@ -11,17 +11,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import org.threeten.bp.ZonedDateTime;
 
 
-@Entity(tableName = "conversation_reply")
+
+@Entity(tableName = "conversation")
 public class Message {
 
     /*
     The unique conversation id
      */
     @PrimaryKey
-    private final int cr_id;
+    private final int id;
     /*
     The message info
      */
@@ -30,15 +30,17 @@ public class Message {
     /*
     The id of the users who send the message
      */
-    private final int user_one;
+    @ColumnInfo(name = "user_one_fk")
+    private final int userOne;
     /*
     The id of the user who recive the message
      */
-    private final int user_two;
+    @ColumnInfo(name = "user_two_fk")
+    private final int userTwo;
     /*
     When de message was send
      */
-    private final ZonedDateTime time;
+    private final String time;
     /*
     GPS Latitude
      */
@@ -51,40 +53,37 @@ public class Message {
     Status of the conversation
      */
     private int status;
-    /*
-    ID of the general conversation between two users
-     */
-    private final int c_id_fk;
 
-    public Message(int cr_id, String text, int user_one,int user_two, ZonedDateTime time, float latitude, float longitude, int c_id_fk) {
-        this.cr_id = cr_id;
+
+    public Message(int id, String text, int userOne,int userTwo, String time, float latitude, float longitude, int status) {
+        this.id = id;
         this.text = text;
-        this.user_one = user_one;
-        this.user_two = user_two;
+        this.userOne = userOne;
+        this.userTwo = userTwo;
         this.time = time;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.c_id_fk = c_id_fk;
+        this.status = status;
     }
 
 
-    public int getCr_id() {
-        return cr_id;
+    public int getId() {
+        return id;
     }
 
     public String getText() {
         return text;
     }
 
-    public int getUser_one() {
-        return user_one;
+    public int getUserOne() {
+        return userOne;
     }
 
-    public int getUser_two() {
-        return user_two;
+    public int getUserTwo() {
+        return userTwo;
     }
 
-    public ZonedDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -100,7 +99,4 @@ public class Message {
         return status;
     }
 
-    public int getC_id_fk() {
-        return c_id_fk;
-    }
 }
