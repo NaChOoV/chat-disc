@@ -5,7 +5,7 @@
  *  Do not use in production.
  */
 
-package cl.ucn.disc.dsm.fuenz.chatdisc.activities;
+package cl.ucn.disc.dsm.fuenz.chatdisc.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import cl.ucn.disc.dsm.fuenz.chatdisc.R;
-import cl.ucn.disc.dsm.fuenz.chatdisc.activities.adapter.UserListAdapter;
+import cl.ucn.disc.dsm.fuenz.chatdisc.activity.adapter.UserListAdapter;
 
 public class UserActivity extends AppCompatActivity {
 

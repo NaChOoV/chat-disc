@@ -9,6 +9,7 @@ package cl.ucn.disc.dsm.fuenz.chatdisc.room;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -43,4 +44,23 @@ public abstract class UserRoomDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    /*
+    FIXME: No me deja llenar la base de datos creando un callback,
+    private static RoomDatabase.Callback userRoomDatabaseCallback = RoomDatabase.Callback(){
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+
+            // If you want to keep data through app restarts,
+            // comment out the following block
+            databaseWriteExecutor.execute(() -> {
+                // Populate the database in the background.
+                // If you want to start with more words, just add them.
+
+            });
+        }
+    }
+    */
+
 }

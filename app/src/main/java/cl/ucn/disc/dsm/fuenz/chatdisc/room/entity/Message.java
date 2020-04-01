@@ -54,7 +54,9 @@ public class Message {
      */
     private int status;
 
-
+    /*
+    The constructor
+     */
     public Message(int id, String text, int userOne,int userTwo, String time, float latitude, float longitude, int status) {
         this.id = id;
         this.text = text;

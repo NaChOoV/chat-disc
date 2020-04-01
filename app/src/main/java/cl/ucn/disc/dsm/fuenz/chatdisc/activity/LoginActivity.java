@@ -5,11 +5,12 @@
  *  Do not use in production.
  */
 
-package cl.ucn.disc.dsm.fuenz.chatdisc.activities;
+package cl.ucn.disc.dsm.fuenz.chatdisc.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -42,24 +43,21 @@ public class LoginActivity extends AppCompatActivity {
          */
         btnRegister = findViewById(R.id.btnRegister);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnLogin.setOnClickListener(view -> {
 
-                /*
-                TODO: Aca se debe enviar la peticion de usuario y contraseña para iniciar session
-                 */
+            /*
+            TODO: Aca se debe enviar la peticion de usuario y contraseña para iniciar session
 
-            }
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+
+             */
+
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: Aca se debe agregar el registro de usuarios cuando se de el click
-
-
-            }
+        btnRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(this,RegisterActivity.class);
+            startActivity(intent);
         });
 
     }

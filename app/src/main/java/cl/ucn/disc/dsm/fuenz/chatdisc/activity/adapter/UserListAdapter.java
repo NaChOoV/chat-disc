@@ -5,7 +5,7 @@
  *  Do not use in production.
  */
 
-package cl.ucn.disc.dsm.fuenz.chatdisc.activities.adapter;
+package cl.ucn.disc.dsm.fuenz.chatdisc.activity.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,7 +19,6 @@ import java.util.List;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.R;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
-import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.UserViewModel;
 
 public class UserListAdapter extends RecyclerView
         .Adapter<UserListAdapter.UserViewHolder> {
