@@ -12,8 +12,7 @@ import java.util.List;
 
 public class ApiResult {
 
-  //public String status;
-  //public long totalResults;
+
   public List<MessageReceived> conversations = new ArrayList<>();
 
 }

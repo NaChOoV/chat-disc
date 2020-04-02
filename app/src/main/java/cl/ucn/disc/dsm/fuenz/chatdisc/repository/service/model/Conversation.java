@@ -19,8 +19,9 @@ public class Conversation {
   public int user_two_fk;
   public ZonedDateTime time;
   public float latitude,longitude;
-  public  String createdAt;
   public  String updatedAt;
+  public  String createdAt;
+
 
   public Conversation(int id, String reply, int user_one_fk, int user_two_fk, ZonedDateTime createdAt, float latitude, float longitude, String createdAt1,
       String updatedAt) {

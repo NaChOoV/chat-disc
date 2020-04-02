@@ -21,9 +21,11 @@ public interface Api {
   @GET("conversation")
   Call<List<MessageReceived>> getConversations() throws Exception;
 
+  @GET("conversation")
+  Call<ApiResult> getEverything(@Query("pageSize") final int pageSize);
+
   @GET("conversation/"+idUser)
   Call<List<MessageReceived>> getConversationForId();
 
-  @GET("conversation")
-  Call<ApiResult> getEverything(@Query("pageSize") final int pageSize);
+
 }

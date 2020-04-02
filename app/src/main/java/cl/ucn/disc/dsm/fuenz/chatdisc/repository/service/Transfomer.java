@@ -31,14 +31,16 @@ public class Transfomer {
       throw new ApiException("message was null");
     }
 
-    // Nullity repy
-    if (message.reply == null) {
-      throw new ApiException("reply was null");
-    }
     //Nullity time
     if (message.time == null){
       throw new ApiException("Id for message was 0");
     }
+
+    // Nullity repy
+    if (message.reply == null) {
+      throw new ApiException("reply was null");
+    }
+
 
     if (message.id==0){
       throw new ApiException("Id for message was 0");

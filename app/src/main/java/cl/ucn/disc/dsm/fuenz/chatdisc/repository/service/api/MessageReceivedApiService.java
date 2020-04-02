@@ -144,7 +144,7 @@ public class MessageReceivedApiService implements ConversationService {
   }
 
   /**
-   * The Exception.
+   * The ApiException.
    */
   public static final class ApiException extends RuntimeException {
 

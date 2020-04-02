@@ -11,8 +11,8 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.model.Conversation;
 import java.util.List;
 
 public interface ConversationService {
-
+  List<Conversation> getTopHeadLines(final int pageSize);
   List<Conversation> getConversations(final int pageSize);
 
-  List<Conversation> getTopHeadLines(final int pageSize);
+
 }

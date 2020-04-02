@@ -16,6 +16,7 @@ public class MessageReceived {
   public int user_two_fk;
   public ZonedDateTime time;
   public float latitude,longitude;
-  public  String createdAt;
   public  String updatedAt;
+  public  String createdAt;
+
 }
