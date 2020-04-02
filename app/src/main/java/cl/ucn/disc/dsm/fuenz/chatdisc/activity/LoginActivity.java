@@ -18,7 +18,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.R;
+import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.service.ConnectionHandler;
 import es.dmoral.toasty.Toasty;
+import kotlin.Triple;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -59,22 +61,34 @@ public class LoginActivity extends AppCompatActivity {
             }
 
 
-            Toasty.success(this, "Confirm", Toast.LENGTH_SHORT, true).show();
-            // Get the username and is pass to the other activity
-            String username = "Test";
-            Intent intent = new Intent(this,UserActivity.class);
-            intent.putExtra("username",username);
-            startActivity(intent);
-            /*
-            TODO: Envio de peticion
 
-            if(true)
-            Intent intent = new Intent(this,UserActivity.class);
-            startActivity(intent);
-            else
-                toast: email o password incorrecto
+            ConnectionHandler connectionHandler = new ConnectionHandler();
 
-             */
+            final Triple<Integer,Integer,String> response
+                    = connectionHandler.loginHandler(email,password);
+
+            switch (response.getFirst()){
+                case 0:
+                    Toasty.success(this, "Login succesful", Toast.LENGTH_SHORT, true).show();
+                    Intent intent = new Intent(this,UserActivity.class);
+                    // Get the username and userId form database and is pass to the other activity
+                    intent.putExtra("userId",response.getSecond());
+                    intent.putExtra("username",response.getThird());
+                    startActivity(intent);
+                    break;
+                case 1:
+                    //Credenciales incorrectas
+                    Toasty.warning(this,"Unknown login credential ",Toast.LENGTH_SHORT,true).show();
+                case 2:
+                    //ERROR de conexion
+                    Toasty.error(this,"Connection error",Toast.LENGTH_SHORT,true).show();
+                    break;
+                default:
+                    //Codigo desconocido
+                    Toasty.error(this,"Unknown status code",Toast.LENGTH_SHORT,true).show();
+                    break;
+            }
+
         });
 
 

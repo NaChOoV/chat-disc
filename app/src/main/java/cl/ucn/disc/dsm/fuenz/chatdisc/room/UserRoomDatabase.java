@@ -45,7 +45,6 @@ public abstract class UserRoomDatabase extends RoomDatabase {
     }
 
     /*
-    FIXME: No me deja llenar la base de datos creando un callback,
     private static RoomDatabase.Callback userRoomDatabaseCallback = RoomDatabase.Callback(){
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
@@ -60,6 +59,8 @@ public abstract class UserRoomDatabase extends RoomDatabase {
             });
         }
     }
-    */
+
+     */
+
 
 }

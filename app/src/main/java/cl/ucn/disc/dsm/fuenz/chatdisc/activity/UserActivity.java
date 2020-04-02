@@ -36,8 +36,11 @@ public class UserActivity extends AppCompatActivity {
         // Get the username and put on the toolbar
         Bundle extras = getIntent().getExtras();
         String username = null;
+        int userId = -1;
         if (extras != null) {
             username = extras.getString("username");
+            userId = extras.getInt("userId");
+
         }
 
         TextView welcomeText = findViewById(R.id.welcomeTextview);

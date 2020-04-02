@@ -7,12 +7,16 @@
 
 package cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.service;
 
+import android.util.Pair;
+
+import kotlin.Triple;
+
 public interface IConnectionHandler {
 
     /**
      * This method will send a request for a new registration to the server.
      *
-     * @param email have to ve unique.
+     * @param email have to be unique.
      * @param username identification between all users
      * @param password secret code to access to the account
      * @return the {@link int} of a status code .
@@ -21,8 +25,15 @@ public interface IConnectionHandler {
                         final String username,
                         final String password);
 
-    String loginHandler(final String email,
-                        final String password);
+    /**
+     * This method will send a request for a authentication to the server
+     *
+     * @param email have to be unique.
+     * @param password secret code to access to the account
+     * @return the {@link Pair} with the status code and the username.
+     */
+    Triple<Integer,Integer,String> loginHandler(final String email,
+                                                final String password);
 
 
 }

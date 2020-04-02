@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             ConnectionHandler connectionHandler = new ConnectionHandler();
 
-            int code = connectionHandler.registerHandler(email,username,password);
+            final int code = connectionHandler.registerHandler(email,username,password);
 
             switch (code){
                 case 0:
@@ -71,13 +71,15 @@ public class RegisterActivity extends AppCompatActivity {
                     Toasty.warning(this,"This email is already registered",Toast.LENGTH_SHORT,true).show();
                     break;
                 case 2:
-                    // Email ya registrado
+                    // Username ya registrado
                     Toasty.warning(this,"Username alredy taken",Toast.LENGTH_SHORT,true).show();
                     break;
                 case 3:
+                    //Error en la conexion
                     Toasty.error(this,"Connection error",Toast.LENGTH_SHORT,true).show();
                     break;
                 default:
+                    // Codigo desconocido
                     Toasty.error(this,"Unknown status code",Toast.LENGTH_SHORT,true).show();
                     break;
 

@@ -11,6 +11,7 @@ import android.os.Build.VERSION_CODES;
 import androidx.annotation.RequiresApi;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.ConversationService;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.ApiResult;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.LoginResult;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.MessageReceived;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.RegisterResult;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.model.Conversation;
@@ -20,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import kotlin.Triple;
 import okhttp3.OkHttpClient;
 import okhttp3.OkHttpClient.Builder;
 import org.slf4j.Logger;
@@ -135,7 +138,7 @@ public class MessageReceivedApiService implements ConversationService {
    * Get the status code from the server,
    *
    * @param theCall to use.
-   * @return the {@link String} of a code.
+   * @return the {@link int} with the status code of the request.
    */
   @RequiresApi(api = VERSION_CODES.N)
   private static int getRegisterStatusFromCall(final Call<RegisterResult> theCall) {
@@ -177,6 +180,68 @@ public class MessageReceivedApiService implements ConversationService {
 
   }
 
+  /**
+   * Send the a request for login confirmation to the server.
+   *
+   * @param theCall to use.
+   * @return the {@link Triple} with a status code, userid and the username.
+   */
+  @RequiresApi(api = VERSION_CODES.N)
+  private static Triple<Integer,Integer,String> getLoginConformationFromCall(final Call<LoginResult> theCall) {
+
+    try {
+
+      // Get the result from the call
+      final Response<LoginResult> response = theCall.execute();
+
+
+      // UnSuccessful !
+      if (!response.isSuccessful()) {
+
+        // Error!
+        throw new ApiException(
+                "Can't get the A Result, code: " + response.code(),
+                new HttpException(response)
+        );
+      }
+      final LoginResult theResult = response.body();
+
+      // No body
+      if (theResult == null) {
+        throw new ApiException("RegisterResult was null");
+      }
+
+      // No code
+      if (theResult.code == null) {
+        throw new ApiException("Status code in LoginResult was null");
+      }
+
+      // No username
+      if (theResult.username == null) {
+        throw new ApiException("Status code in LoginResult was null");
+      }
+
+      // No userId
+      if (theResult.userId == null) {
+        throw new ApiException("User id in LoginResult was null");
+      }
+
+      return new Triple<Integer,Integer,String>(
+              Integer.parseInt(theResult.code),
+              Integer.parseInt(theResult.userId),
+              theResult.username);
+
+    } catch (final IOException ex) {
+
+        return new Triple<Integer,Integer,String>(
+                2,
+                null,
+                null);
+
+    }
+
+  }
+
 
   @Override
   public List<Conversation> getConversations(int pageSize) {
@@ -198,6 +263,14 @@ public class MessageReceivedApiService implements ConversationService {
     final Call<RegisterResult> theCall = this.api.registerUser(email,username,password);
 
     return getRegisterStatusFromCall(theCall);
+  }
+
+  @Override
+  public Triple<Integer, Integer, String> loginUser(String email, String password) {
+
+    final Call<LoginResult> theCall = this.api.loginUser(email,password);
+
+    return getLoginConformationFromCall(theCall);
   }
 
   /**

@@ -7,7 +7,11 @@
 
 package cl.ucn.disc.dsm.fuenz.chatdisc.repository.service;
 
+import android.util.Pair;
+
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.model.Conversation;
+import kotlin.Triple;
+
 import java.util.List;
 
 public interface ConversationService {
@@ -15,6 +19,8 @@ public interface ConversationService {
   List<Conversation> getConversations(final int pageSize);
 
   int registerUser(final String email,final String username, final String password);
+
+  Triple<Integer,Integer,String> loginUser(final String email, final String password);
 
 
 }

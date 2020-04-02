@@ -7,14 +7,17 @@
 
 package cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.service;
 
+import android.util.Pair;
+
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.ConversationService;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.MessageReceivedApiService;
+import kotlin.Triple;
 
 public class ConnectionHandler implements IConnectionHandler{
 
 
     @Override
-    public int registerHandler(String email, String username, String password){
+    public int registerHandler(final String email,final String username,final String password){
         // The connection service
         final ConversationService connectionService = new MessageReceivedApiService();
 
@@ -22,7 +25,10 @@ public class ConnectionHandler implements IConnectionHandler{
     }
 
     @Override
-    public String loginHandler(String email, String password) {
-        return null;
+    public Triple<Integer,Integer,String> loginHandler(final String email,final String password) {
+
+        final ConversationService connectionService = new MessageReceivedApiService();
+
+        return connectionService.loginUser(email,password);
     }
 }

@@ -10,6 +10,7 @@ package cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api;
 import java.util.List;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.ApiResult;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.LoginResult;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.MessageReceived;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.RegisterResult;
 import retrofit2.Call;
@@ -36,6 +37,11 @@ public interface Api {
           @Query("email") String email,
           @Query("username") String username,
           @Query("password") String password);
+
+  @GET("login")
+  Call<LoginResult> loginUser(
+          @Query("email") String email,
+          @Query("username") String username);
 
 
 }
