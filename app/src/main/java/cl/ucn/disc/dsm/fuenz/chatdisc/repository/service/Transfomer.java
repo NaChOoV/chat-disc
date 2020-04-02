@@ -7,7 +7,7 @@
 
 package cl.ucn.disc.dsm.fuenz.chatdisc.repository.service;
 
-import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.MessageReceived;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.MessageReceived;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.MessageReceivedApiService.ApiException;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.model.Conversation;
 import javax.xml.transform.Transformer;

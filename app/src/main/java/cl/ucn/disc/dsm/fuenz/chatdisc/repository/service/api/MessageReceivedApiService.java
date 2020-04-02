@@ -10,9 +10,12 @@ package cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api;
 import android.os.Build.VERSION_CODES;
 import androidx.annotation.RequiresApi;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.ConversationService;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.ApiResult;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.MessageReceived;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.RegisterResult;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.model.Conversation;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.Transfomer;
-import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.Message;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +131,52 @@ public class MessageReceivedApiService implements ConversationService {
 
   }
 
+  /**
+   * Get the status code from the server,
+   *
+   * @param theCall to use.
+   * @return the {@link String} of a code.
+   */
+  @RequiresApi(api = VERSION_CODES.N)
+  private static int getRegisterStatusFromCall(final Call<RegisterResult> theCall) {
+
+    try {
+
+      // Get the result from the call
+      final Response<RegisterResult> response = theCall.execute();
+
+
+      // UnSuccessful !
+      if (!response.isSuccessful()) {
+
+        // Error!
+        throw new ApiException(
+                "Can't get the A Result, code: " + response.code(),
+                new HttpException(response)
+        );
+      }
+      final RegisterResult theResult = response.body();
+
+      // No body
+      if (theResult == null) {
+        throw new ApiException("RegisterResult was null");
+      }
+
+      // No code
+      if (theResult.code == null) {
+        throw new ApiException("Status code in RegisterResult was null");
+      }
+
+      return Integer.parseInt(theResult.code);
+
+    } catch (final IOException ex) {
+
+      return 3;
+
+    }
+
+  }
+
 
   @Override
   public List<Conversation> getConversations(int pageSize) {
@@ -141,6 +190,14 @@ public class MessageReceivedApiService implements ConversationService {
   @Override
   public List<Conversation> getTopHeadLines(int pageSize) {
     return null;
+  }
+
+  @Override
+  public int registerUser(String email, String username, String password) {
+
+    final Call<RegisterResult> theCall = this.api.registerUser(email,username,password);
+
+    return getRegisterStatusFromCall(theCall);
   }
 
   /**

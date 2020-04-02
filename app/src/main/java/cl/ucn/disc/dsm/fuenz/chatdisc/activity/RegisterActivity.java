@@ -9,22 +9,29 @@ package cl.ucn.disc.dsm.fuenz.chatdisc.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import cl.ucn.disc.dsm.fuenz.chatdisc.R;
+import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.service.ConnectionHandler;
+import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.service.IConnectionHandler;
 import es.dmoral.toasty.Toasty;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Objects;
-
 public class RegisterActivity extends AppCompatActivity {
 
+    /*
+        Username, Password, Email input container
+    */
     EditText editTextEmail, editTextPassword, editTextUsername;
+    /*
+    Register and Return to login button
+     */
     Button btnRegister, btnReturn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +39,13 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        /*
-        Email container
-         */
         editTextEmail = findViewById(R.id.editTextTextEmailAddress);
-        /*
-        Username container
-         */
         editTextUsername = findViewById(R.id.editTextTextPersonName);
-        /*
-        Password container
-         */
         editTextPassword = findViewById(R.id.editTextTextPassword);
-
-        /*
-        Button who will send a post to create a new user
-         */
         btnRegister = findViewById(R.id.button);
-
         btnReturn = findViewById(R.id.btnReturn);
 
         btnRegister.setOnClickListener(view -> {
-
 
             String email = editTextEmail.getText().toString();
             String username = editTextUsername.getText().toString();
@@ -64,17 +56,49 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            // TODO: Llamar al RefisterHandler
+            ConnectionHandler connectionHandler = new ConnectionHandler();
 
-            Toasty.success(this,"You have successfully registered",Toast.LENGTH_SHORT,true).show();
+            int code = connectionHandler.registerHandler(email,username,password);
+
+            switch (code){
+                case 0:
+                    // Usuario registrado correctamente
+                    Toasty.success(this,"You have successfully registered",Toast.LENGTH_SHORT,true).show();
+                    returnToLogin();
+                    break;
+                case 1:
+                    // Email ya registrado
+                    Toasty.warning(this,"This email is already registered",Toast.LENGTH_SHORT,true).show();
+                    break;
+                case 2:
+                    // Email ya registrado
+                    Toasty.warning(this,"Username alredy taken",Toast.LENGTH_SHORT,true).show();
+                    break;
+                case 3:
+                    Toasty.error(this,"Connection error",Toast.LENGTH_SHORT,true).show();
+                    break;
+                default:
+                    Toasty.error(this,"Unknown status code",Toast.LENGTH_SHORT,true).show();
+                    break;
+
+            }
+
 
         });
 
+
+        /*
+        Se retornara a la actividad de login y se eliminara la de registro.
+         */
         btnReturn.setOnClickListener(view -> {
-            Intent intent = new Intent(this,LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            returnToLogin();
 
         });
+    }
+
+    private void returnToLogin(){
+        Intent intent = new Intent(this,LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

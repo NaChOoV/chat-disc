@@ -8,6 +8,10 @@
 package cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api;
 
 import java.util.List;
+
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.ApiResult;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.MessageReceived;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.RegisterResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -26,6 +30,12 @@ public interface Api {
 
   @GET("conversation/"+idUser)
   Call<List<MessageReceived>> getConversationForId();
+
+  @GET("register")
+  Call<RegisterResult> registerUser(
+          @Query("email") String email,
+          @Query("username") String username,
+          @Query("password") String password);
 
 
 }

@@ -14,5 +14,7 @@ public interface ConversationService {
   List<Conversation> getTopHeadLines(final int pageSize);
   List<Conversation> getConversations(final int pageSize);
 
+  int registerUser(final String email,final String username, final String password);
+
 
 }
