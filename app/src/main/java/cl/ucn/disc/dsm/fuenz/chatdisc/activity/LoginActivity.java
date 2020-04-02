@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -43,18 +44,30 @@ public class LoginActivity extends AppCompatActivity {
          */
         btnRegister = findViewById(R.id.btnRegister);
 
-        btnLogin.setOnClickListener(view -> {
 
-            /*
-            TODO: Aca se debe enviar la peticion de usuario y contraseña para iniciar session
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = editTextEmail.getText().toString();
+                String password = editTextPassword.getText().toString();
 
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
+                /*
+                TODO: Envio de peticion
 
-             */
+                if(true)
+                Intent intent = new Intent(this,UserActivity.class);
+                startActivity(intent);
+                else
+                    toast: email o password incorrecto
 
+                 */
+            }
         });
 
+
+        /*
+        En caso de hacer click en registrar, se eliminara la actividad Login y se creara la de registro.
+         */
         btnRegister.setOnClickListener(view -> {
             Intent intent = new Intent(this,RegisterActivity.class);
             startActivity(intent);

@@ -32,7 +32,7 @@ public class UserRepository {
     }
 
     /*
-    Return a list
+    Return the LiveData
      */
     public LiveData<List<User>> getAllUser(){
         return allUser;

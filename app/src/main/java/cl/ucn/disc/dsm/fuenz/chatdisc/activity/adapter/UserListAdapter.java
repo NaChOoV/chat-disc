@@ -23,7 +23,7 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 public class UserListAdapter extends RecyclerView
         .Adapter<UserListAdapter.UserViewHolder> {
 
-    class UserViewHolder extends RecyclerView.ViewHolder{
+    static class UserViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView userItemView;
 
