@@ -20,6 +20,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
 
     buildTypes {
         release {
@@ -89,6 +94,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.threeten/threetenbp
     implementation group: 'org.threeten', name: 'threetenbp', version: '1.4.1'
+
+    // https://github.com/GrenderG/Toasty
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 
 
 
