@@ -57,6 +57,11 @@ public class UserListAdapter extends RecyclerView
         }
     }
 
+    public void setUser(List<User> users){
+        this.users = users;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         if (users != null)

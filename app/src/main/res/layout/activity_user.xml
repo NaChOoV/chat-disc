@@ -32,6 +32,20 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/welcomeTextview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/pureWhite"
+            android:textSize="28sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="9dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

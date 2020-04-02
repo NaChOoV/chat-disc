@@ -11,11 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.R;
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,23 +48,33 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
 
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = editTextEmail.getText().toString();
-                String password = editTextPassword.getText().toString();
+        btnLogin.setOnClickListener(view -> {
+            String email = editTextEmail.getText().toString();
+            String password = editTextPassword.getText().toString();
 
-                /*
-                TODO: Envio de peticion
 
-                if(true)
-                Intent intent = new Intent(this,UserActivity.class);
-                startActivity(intent);
-                else
-                    toast: email o password incorrecto
-
-                 */
+            if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password) ){
+                Toasty.error(this,"Please fill all fields correctly",Toast.LENGTH_SHORT,false).show();
+                return;
             }
+
+
+            Toasty.success(this, "Confirm", Toast.LENGTH_SHORT, true).show();
+            // Get the username and is pass to the other activity
+            String username = "Test";
+            Intent intent = new Intent(this,UserActivity.class);
+            intent.putExtra("username",username);
+            startActivity(intent);
+            /*
+            TODO: Envio de peticion
+
+            if(true)
+            Intent intent = new Intent(this,UserActivity.class);
+            startActivity(intent);
+            else
+                toast: email o password incorrecto
+
+             */
         });
 
 
