@@ -1,5 +1,6 @@
 package cl.ucn.disc.dsm.fuenz.chatdisc;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -7,6 +8,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import cl.ucn.disc.dsm.fuenz.chatdisc.room.UserRoomDatabase;
 
 import static org.junit.Assert.*;
 
@@ -22,5 +25,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("cl.ucn.disc.dsm.fuenz.chat_disc", appContext.getPackageName());
+
     }
 }

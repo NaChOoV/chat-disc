@@ -7,9 +7,12 @@
 
 package cl.ucn.disc.dsm.fuenz.chatdisc.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,18 +51,19 @@ public class UserActivity extends AppCompatActivity {
 
 
         //The recyclerView of users
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         final UserListAdapter adapter = new UserListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.getAllUser().observe(this, new Observer<List<User>>() {
             @Override
-            public void onChanged(List<User> users) {
-                adapter.setUser(users);
+            public void onChanged(@Nullable List<User> users) {
+                adapter.setAllUser(users);
             }
         });
 
