@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. This code is purely educational, the rights of use are
+  ~  reserved, the owner of the code is Ignacio Fuenzalida Veas
+  ~  contact ignacio.fuenzalida@alumnos.ucn.cl
+  ~  Do not use in production.
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cl.ucn.disc.dsm.fuenz.chatdisc">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

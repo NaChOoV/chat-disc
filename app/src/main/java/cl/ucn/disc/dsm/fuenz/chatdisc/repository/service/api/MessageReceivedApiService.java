@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020. This code is purely educational, the rights of use are
- *  reserved, the owner of the code is Alvaro Castillo Calabacero
- *  contact alvarolucascc96@gmail.com
+ *  reserved, the owner of the code is Ignacio Fuenzalida Veas
+ *  contact ignacio.fuenzalida@alumnos.ucn.cl
  *  Do not use in production.
  */
 
@@ -158,7 +158,9 @@ public class MessageReceivedApiService implements ConversationService {
                 new HttpException(response)
         );
       }
+
       final RegisterResult theResult = response.body();
+
 
       // No body
       if (theResult == null) {
@@ -169,7 +171,7 @@ public class MessageReceivedApiService implements ConversationService {
       if (theResult.code == null) {
         throw new ApiException("Status code in RegisterResult was null");
       }
-
+      log.info(theResult.code);
       return Integer.parseInt(theResult.code);
 
     } catch (final IOException ex) {
@@ -204,6 +206,7 @@ public class MessageReceivedApiService implements ConversationService {
                 new HttpException(response)
         );
       }
+      log.debug(response.body().toString());
       final LoginResult theResult = response.body();
 
       // No body
@@ -247,6 +250,7 @@ public class MessageReceivedApiService implements ConversationService {
   public List<Conversation> getConversations(int pageSize) {
     // the Call
     final Call<ApiResult> theCall = this.api.getEverything(pageSize);
+    log.debug(theCall.toString());
 
     // Process the Call.
     return getConversationsFromCall(theCall);
@@ -269,7 +273,7 @@ public class MessageReceivedApiService implements ConversationService {
   public Triple<Integer, Integer, String> loginUser(String email, String password) {
 
     final Call<LoginResult> theCall = this.api.loginUser(email,password);
-
+    log.debug(email+ " : "+password);
     return getLoginConformationFromCall(theCall);
   }
 

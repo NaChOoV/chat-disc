@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020. This code is purely educational, the rights of use are
- *  reserved, the owner of the code is Alvaro Castillo Calabacero
- *  contact alvarolucascc96@gmail.com
+ *  reserved, the owner of the code is Ignacio Fuenzalida Veas
+ *  contact ignacio.fuenzalida@alumnos.ucn.cl
  *  Do not use in production.
  */
 
@@ -15,6 +15,7 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.Message
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.api.jsonadapter.RegisterResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface Api {
@@ -32,7 +33,7 @@ public interface Api {
   @GET("conversation/"+idUser)
   Call<List<MessageReceived>> getConversationForId();
 
-  @GET("register")
+  @GET("registerUser")
   Call<RegisterResult> registerUser(
           @Query("email") String email,
           @Query("username") String username,
@@ -41,7 +42,7 @@ public interface Api {
   @GET("login")
   Call<LoginResult> loginUser(
           @Query("email") String email,
-          @Query("username") String username);
+          @Query("password") String password);
 
 
 }
