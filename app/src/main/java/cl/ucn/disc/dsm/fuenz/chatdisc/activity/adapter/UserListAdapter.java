@@ -35,14 +35,29 @@ public class UserListAdapter extends RecyclerView
             super(itemView);
             username = itemView.findViewById(R.id.username_text);
             email = itemView.findViewById(R.id.email_text);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    int position = getAdapterPosition();
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onUserClick(allUser.get(position));
+                    }
+
+                }
+            });
         }
     }
 
     private LayoutInflater mInflater;
     private List<User> allUser;
 
+    private OnUserClickListener listener;
+
+
     public UserListAdapter(Context context){
         this.mInflater = LayoutInflater.from(context);
+
     }
 
     @Override
@@ -57,6 +72,7 @@ public class UserListAdapter extends RecyclerView
             User current = allUser.get(position);
             holder.username.setText(current.getUsername());
             holder.email.setText(current.getEmail());
+
         }else{
             holder.username.setText("No username");
             holder.email.setText("No email");
@@ -75,5 +91,13 @@ public class UserListAdapter extends RecyclerView
         if (allUser != null)
             return allUser.size();
         else return 0;
+    }
+
+    public interface OnUserClickListener{
+        void onUserClick(User user);
+    }
+
+    public void setOnUserClickListener(OnUserClickListener listener){
+        this.listener = listener;
     }
 }

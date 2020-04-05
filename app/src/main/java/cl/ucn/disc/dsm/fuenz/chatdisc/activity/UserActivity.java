@@ -16,19 +16,26 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.R;
 import cl.ucn.disc.dsm.fuenz.chatdisc.activity.adapter.UserListAdapter;
+import cl.ucn.disc.dsm.fuenz.chatdisc.activity.session.UserSession;
+import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.model.Conversation;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.UserViewModel;
+import es.dmoral.toasty.Toasty;
 
 public class UserActivity extends AppCompatActivity {
 
     private UserViewModel userViewModel;
+
+    private UserSession userSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +44,11 @@ public class UserActivity extends AppCompatActivity {
 
 
         // Get the username and put on the toolbar
-        Bundle extras = getIntent().getExtras();
-        String username = null;
-        int userId = -1;
-        if (extras != null) {
-            username = extras.getString("username");
-            userId = extras.getInt("userId");
-
-        }
+        Intent i = getIntent();
+        userSession = (UserSession) i.getSerializableExtra("userSession");
 
         TextView welcomeText = findViewById(R.id.welcomeTextview);
-        welcomeText.setText("Welcome " + username);
+        welcomeText.setText("Welcome " + userSession.getUsername());
 
 
         //The recyclerView of users
@@ -57,7 +58,7 @@ public class UserActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-
+        Intent intent = new Intent(this,UserActivity.class);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.getAllUser().observe(this, new Observer<List<User>>() {
@@ -67,6 +68,19 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        adapter.setOnUserClickListener(new UserListAdapter.OnUserClickListener() {
+            @Override
+            public void onUserClick(User user) {
+                startConversation(user);
+            }
+        });
 
+    }
+
+    private void startConversation(User user){
+        Intent intent = new Intent(this,ConversationActivity.class);
+        this.userSession.setSecondUserId(user.getUserId());
+        intent.putExtra("userSession",this.userSession);
+        startActivity(intent);
     }
 }

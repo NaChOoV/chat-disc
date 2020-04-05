@@ -18,9 +18,11 @@ public interface MessageDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Message message);
 
-    @Query("DELETE FROM conversation")
+    @Query("DELETE FROM conversation_table")
     void deleteAll();
 
-    @Query("SELECT * from conversation ORDER BY time ASC")
-    LiveData<List<Message>> getAllMessageOrderByDate();
+    @Query("SELECT * from conversation_table " +
+            "WHERE (user_one_fk = :idOne AND user_two_fk = :idTwo) OR (user_one_fk = :idTwo AND user_two_fk = :idOne) " +
+            "ORDER BY time ASC")
+    LiveData<List<Message>> getChatMessageOrderByDate(int idOne,int idTwo);
 }

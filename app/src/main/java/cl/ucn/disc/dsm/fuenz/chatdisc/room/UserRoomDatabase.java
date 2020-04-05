@@ -63,9 +63,9 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 // If you want to start with more words, just add them.
                 UserDao dao = INSTANCE.userDao();
                 dao.deleteAll();
-                for (int n = 0; n < 10; n++) {
+                for (int n = 1; n <= 10; n++) {
                     dao.insert(new User(n,
-                            "Lavin",
+                            "Lavin"+n,
                             "Lavin@lavin.lavin",
                             "lavin"));
                 }

@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey;
 
 
 
-@Entity(tableName = "conversation")
+@Entity(tableName = "conversation_table")
 public class Message {
 
     /*
@@ -26,7 +26,7 @@ public class Message {
     The message info
      */
     @ColumnInfo(name = "reply")
-    private final String text;
+    private final String message;
     /*
     The id of the users who send the message
      */
@@ -57,24 +57,23 @@ public class Message {
     /*
     The constructor
      */
-    public Message(int id, String text, int userOne,int userTwo, String time, float latitude, float longitude, int status) {
+
+    public Message(int id, String message, int userOne, int userTwo, String time, float latitude, float longitude) {
         this.id = id;
-        this.text = text;
+        this.message = message;
         this.userOne = userOne;
         this.userTwo = userTwo;
         this.time = time;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.status = status;
     }
-
 
     public int getId() {
         return id;
     }
 
     public String getText() {
-        return text;
+        return message;
     }
 
     public int getUserOne() {
