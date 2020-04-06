@@ -26,9 +26,9 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(User user);
 
-    @Query("DELETE FROM users")
+    @Query("DELETE FROM user_table")
     void deleteAll();
 
-    @Query("SELECT * from users ORDER BY username ASC")
+    @Query("SELECT * from user_table ORDER BY username ASC")
     LiveData<List<User>> getAllUserOrderByAsc();
 }

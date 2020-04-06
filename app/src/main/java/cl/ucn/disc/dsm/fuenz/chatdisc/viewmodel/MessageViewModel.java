@@ -12,7 +12,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -22,18 +21,21 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.repository.MessageRepository;
 public class MessageViewModel extends AndroidViewModel {
 
     private MessageRepository messageRepository;
+    private int idOne;
+    private int idTwo;
 
     private LiveData<List<Message>> allMessage;
 
-    public MessageViewModel(@NonNull Application application) {
+    public MessageViewModel(@NonNull Application application,int idOne,int idTwo) {
         super(application);
-
-        messageRepository = new MessageRepository(application);
+        this.idOne = idOne;
+        this.idTwo = idTwo;
+        messageRepository = new MessageRepository(application,this.idOne, this.idTwo);
 
         allMessage = messageRepository.getAllMessages();
     }
 
-    LiveData<List<Message>> getAllMessage(){
+    public LiveData<List<Message>> getAllMessage(){
         return allMessage;
     }
 

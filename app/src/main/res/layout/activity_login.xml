@@ -38,18 +38,20 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="176dp"
-        android:layout_height="174dp"
+        android:layout_width="364dp"
+        android:layout_height="219dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/editEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerToolbar"
-        tools:srcCompat="?android:attr/actionModeFindDrawable" />
+        app:srcCompat="@drawable/lavin"
+        tools:srcCompat="@drawable/lavin" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -78,7 +80,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/registerToolbar"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"

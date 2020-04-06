@@ -8,6 +8,7 @@
 package cl.ucn.disc.dsm.fuenz.chatdisc.repository;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -23,6 +24,9 @@ public class UserRepository {
     DAO of the user database
      */
     private UserDao userDao;
+    /*
+    The LiveData of users from the database
+     */
     private LiveData<List<User>> allUser;
 
     public UserRepository(Application application){
@@ -38,9 +42,4 @@ public class UserRepository {
         return allUser;
     }
 
-    public void insertUser(User user){
-        UserRoomDatabase.databaseWriteExecutor.execute(()->{
-            userDao.insert(user);
-        });
-    }
 }

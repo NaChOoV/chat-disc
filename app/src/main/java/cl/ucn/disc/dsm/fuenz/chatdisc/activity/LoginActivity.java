@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.R;
+import cl.ucn.disc.dsm.fuenz.chatdisc.activity.session.UserSession;
 import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.service.ConnectionHandler;
 import es.dmoral.toasty.Toasty;
 import kotlin.Triple;
@@ -64,16 +65,21 @@ public class LoginActivity extends AppCompatActivity {
 
             ConnectionHandler connectionHandler = new ConnectionHandler();
 
+            /*
+            FIXME: Agregar esto, q es temporal para iniciar sesion
             final Triple<Integer,Integer,String> response
                     = connectionHandler.loginHandler(email,password);
 
+             */
+
+            final Triple<Integer,Integer,String> response = new Triple<Integer,Integer,String>(0,1,"Lavin1");
             switch (response.getFirst()){
                 case 0:
                     Toasty.success(this, "Login succesful", Toast.LENGTH_SHORT, true).show();
                     Intent intent = new Intent(this,UserActivity.class);
                     // Get the username and userId form database and is pass to the other activity
-                    intent.putExtra("userId",response.getSecond());
-                    intent.putExtra("username",response.getThird());
+                    UserSession userSession = new UserSession(response.getThird(),response.getSecond());
+                    intent.putExtra("userSession",userSession);
                     startActivity(intent);
                     break;
                 case 1:

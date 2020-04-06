@@ -11,7 +11,7 @@ package cl.ucn.disc.dsm.fuenz.chatdisc.room.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "users")
+@Entity(tableName = "user_table")
 public class User {
     /*
    The unique user id

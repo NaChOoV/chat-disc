@@ -20,15 +20,21 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.Message;
 
 public class MessageRepository {
 
+    /*
+    The message DAO
+     */
     private MessageDao messageDao;
 
+    /*
+    The liveData to to hold the List of messages
+     */
     private LiveData<List<Message>> allMessages;
 
-    public MessageRepository(Application application){
+    public MessageRepository(Application application,int idOne,int idTwo){
         MessageRoomDatabase db = MessageRoomDatabase.getDatabase(application);
 
         messageDao = db.messageDao();
-        allMessages = messageDao.getAllMessageOrderByDate();
+        allMessages = messageDao.getChatMessageOrderByDate(idOne,idTwo);
     }
 
     // Room executes all queries on a separate thread.
