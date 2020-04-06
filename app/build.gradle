@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020. This code is purely educational, the rights of use are
- *  reserved, the owner of the code is Alvaro Castillo Calabacero
- *  contact alvarolucascc96@gmail.com
+ *  reserved, the owner of the code is Ignacio Fuenzalida Veas
+ *  contact ignacio.fuenzalida@alumnos.ucn.cl
  *  Do not use in production.
  */
 
@@ -81,9 +81,11 @@ dependencies {
 
     // SLF4J
     implementation 'org.slf4j:slf4j-api:1.7.29'
-
+    //implementation "com.github.tony19:logback-android:2.0.0"
+    //implementation 'ch.qos.logback:logback-classic:1.3.0-alpha5'
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
     testImplementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
 
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
