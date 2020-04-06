@@ -41,7 +41,8 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/conversation_toolbar" />
+        android:layout_below="@id/conversation_toolbar"
+        tools:listitem="@layout/rv_message"/>
 
 
 

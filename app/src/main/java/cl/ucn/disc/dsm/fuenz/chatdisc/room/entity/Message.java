@@ -50,14 +50,8 @@ public class Message {
      */
     private final float longitude;
     /*
-    Status of the conversation
-     */
-    private int status;
-
-    /*
     The constructor
      */
-
     public Message(int id, String message, int userOne, int userTwo, String time, float latitude, float longitude) {
         this.id = id;
         this.message = message;
@@ -72,7 +66,7 @@ public class Message {
         return id;
     }
 
-    public String getText() {
+    public String getMessage() {
         return message;
     }
 
@@ -96,8 +90,6 @@ public class Message {
         return longitude;
     }
 
-    public int getStatus() {
-        return status;
-    }
+
 
 }

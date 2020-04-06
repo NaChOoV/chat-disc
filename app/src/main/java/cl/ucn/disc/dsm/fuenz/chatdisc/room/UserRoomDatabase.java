@@ -27,11 +27,11 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 @Database(entities = {User.class}, version = 2, exportSchema = false)
 public abstract class UserRoomDatabase extends RoomDatabase {
 
-
     public abstract UserDao userDao();
 
     private static volatile UserRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
+
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
@@ -63,12 +63,16 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 // If you want to start with more words, just add them.
                 UserDao dao = INSTANCE.userDao();
                 dao.deleteAll();
-                for (int n = 1; n <= 10; n++) {
-                    dao.insert(new User(n,
-                            "Lavin"+n,
-                            "Lavin@lavin.lavin",
-                            "lavin"));
-                }
+
+                dao.insert(new User(2,
+                        "Prima",
+                        "Lavin@lavin.lavin",
+                        "lavin"));
+
+                dao.insert(new User(3,
+                        "Nana",
+                        "Lavin@lavin.lavin",
+                        "lavin"));
 
             });
 

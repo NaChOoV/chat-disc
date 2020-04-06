@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
              */
 
-            final Triple<Integer,Integer,String> response = new Triple<Integer,Integer,String>(0,1,"Lavin");
+            final Triple<Integer,Integer,String> response = new Triple<Integer,Integer,String>(0,1,"Lavin1");
             switch (response.getFirst()){
                 case 0:
                     Toasty.success(this, "Login succesful", Toast.LENGTH_SHORT, true).show();

@@ -13,12 +13,21 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class UserSession implements Serializable {
     private final String username;
+    private String secondUsername;
     private final int userId;
     private int secondUserId;
 
     public UserSession(final String username, final int userId) {
         this.username = username;
         this.userId = userId;
+    }
+
+    public String getSecondUsername() {
+        return secondUsername;
+    }
+
+    public void setSecondUsername(String secondUsername) {
+        this.secondUsername = secondUsername;
     }
 
     public String getUsername() {

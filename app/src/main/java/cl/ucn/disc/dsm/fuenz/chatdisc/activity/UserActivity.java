@@ -58,7 +58,6 @@ public class UserActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        Intent intent = new Intent(this,UserActivity.class);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.getAllUser().observe(this, new Observer<List<User>>() {
@@ -80,6 +79,7 @@ public class UserActivity extends AppCompatActivity {
     private void startConversation(User user){
         Intent intent = new Intent(this,ConversationActivity.class);
         this.userSession.setSecondUserId(user.getUserId());
+        this.userSession.setSecondUsername(user.getUsername());
         intent.putExtra("userSession",this.userSession);
         startActivity(intent);
     }
