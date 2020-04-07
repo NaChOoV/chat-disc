@@ -16,8 +16,8 @@ public class User {
     /*
    The unique user id
     */
-    @PrimaryKey
-    private final int userId;
+    @PrimaryKey(autoGenerate = true)
+    private int userId = 0;
     /*
     The name of the user
      */
@@ -31,8 +31,7 @@ public class User {
      */
     private final String pwd;
 
-    public User(int userId, String username, String email, String pwd) {
-        this.userId = userId;
+    public User(String username, String email, String pwd) {
         this.username = username;
         this.email = email;
         this.pwd = pwd;
@@ -52,5 +51,9 @@ public class User {
 
     public String getPwd() {
         return pwd;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

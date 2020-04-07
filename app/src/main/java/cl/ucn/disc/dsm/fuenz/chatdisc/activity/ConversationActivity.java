@@ -17,8 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,10 @@ public class ConversationActivity extends AppCompatActivity {
 
     private MessageViewModel messageViewModel;
 
+    private TextView messageTextView;
+
+    private Button sendButton;
+
     private UserSession userSession;
 
     @Override
@@ -48,6 +55,8 @@ public class ConversationActivity extends AppCompatActivity {
         this.userSession = (UserSession) i.getSerializableExtra("userSession");
 
         TextView welcomeText = findViewById(R.id.toolbar_text);
+        messageTextView = findViewById(R.id.edittext_chatbox);
+        sendButton = findViewById(R.id.button_chatbox_send);
         welcomeText.setText(userSession.getSecondUsername());
 
         //The toolbar
@@ -73,6 +82,26 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = messageTextView.getText().toString();
+
+                if(message.isEmpty())
+                    return;
+
+                int userOne = userSession.getUserId();
+                int userTwo = userSession.getSecondUserId();
+
+                messageViewModel.insert(userOne,userTwo,message);
+                messageTextView.setText("");
+
+            }
+        });
+
+
+
         //The backbutton
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,5 +109,10 @@ public class ConversationActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

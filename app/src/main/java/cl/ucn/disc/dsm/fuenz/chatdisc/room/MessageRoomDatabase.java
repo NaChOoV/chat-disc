@@ -21,7 +21,7 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.room.dao.UserDao;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.Message;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 
-@Database(entities = {Message.class}, version = 1, exportSchema = false)
+@Database(entities = {Message.class}, version = 2, exportSchema = false)
 public abstract class MessageRoomDatabase extends RoomDatabase {
 
     public abstract MessageDao messageDao();
@@ -65,10 +65,12 @@ public abstract class MessageRoomDatabase extends RoomDatabase {
 
                 MessageDao dao = INSTANCE.messageDao();
                 dao.deleteAll();
-                dao.insert(new Message(1,
+
+                /*
+                dao.insert(new Message(4,
                         "mis papas son hermanos",
-                        1,
-                        2,
+                        4,
+                        0,
                         dateFormat.format(date),
                         -12312,
                         12313));
@@ -79,19 +81,21 @@ public abstract class MessageRoomDatabase extends RoomDatabase {
 
                 dao.insert(new Message(2,
                         "terrible culiemos",
-                        2,
-                        1,
+                        0,
+                        4,
                         dateFormat.format(date),
                         -12312,
                         12313));
 
                 dao.insert(new Message(3,
                         "en 2 meses te pago",
+                        4,
                         1,
-                        3,
                         dateFormat.format(date),
                         -12312,
                         12313));
+                        */
+
 
             });
 

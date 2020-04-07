@@ -39,5 +39,7 @@ public class MessageViewModel extends AndroidViewModel {
         return allMessage;
     }
 
-    public void insert(Message message) {messageRepository.insert(message);}
+    public void insert(int idOne, int idTwo, String message) {
+        messageRepository.insert(idOne,idTwo,message);
+    }
 }

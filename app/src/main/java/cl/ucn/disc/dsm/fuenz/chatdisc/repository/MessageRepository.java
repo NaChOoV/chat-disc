@@ -12,11 +12,15 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.MessageRoomDatabase;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.dao.MessageDao;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.Message;
+import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.MessageBuilder;
 
 public class MessageRepository {
 
@@ -35,6 +39,8 @@ public class MessageRepository {
 
         messageDao = db.messageDao();
         allMessages = messageDao.getChatMessageOrderByDate(idOne,idTwo);
+
+        // TODO: INCIAR PETICION CONSTANTE AL SERVIDOR PARA SER ACTUALIZADA
     }
 
     // Room executes all queries on a separate thread.
@@ -43,9 +49,22 @@ public class MessageRepository {
         return allMessages;
     }
 
-    public void insert(Message message){
+    public void insert(int idOne, int idTwo, String message){
+        long time = System.currentTimeMillis();
+        Date date =new Date(time);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
+
         MessageRoomDatabase.databaseWriteExecutor.execute(()->{
-            messageDao.insert(message);
+            messageDao.insert(
+                    new MessageBuilder()
+                            .setMessage(message)
+                            .setUserOne(idOne)
+                            .setUserTwo(idTwo)
+                            .setTime(dateFormat.format(date))
+                            .setLatitude(123123)
+                            .setLongitude(123132)
+                            .build()
+            );
         });
     }
 }
