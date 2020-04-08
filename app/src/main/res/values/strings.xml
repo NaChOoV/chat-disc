@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">chat-disc</string>
-    <string name="title_register">Lavin-Chat Register</string>
-    <string name="title_login">Lavin-Chat Login</string>
+    <string name="title_register">Chat-Disc Register</string>
+    <string name="title_login">Chat-Disc Login</string>
 
 </resources>

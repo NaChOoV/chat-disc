@@ -67,11 +67,11 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 UserDao dao = INSTANCE.userDao();
                 dao.deleteAll();
 
-                dao.insert(new User("Prima",
+                dao.insert(new User("Usuario1",
                         "Lavin@lavin.lavin",
                         "lavin"));
 
-                dao.insert(new User("Nana",
+                dao.insert(new User("Usuario2",
                         "Lavin@lavin.lavin",
                         "lavin"));
 

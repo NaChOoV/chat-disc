@@ -30,7 +30,10 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.repository.service.model.Conversation;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.UserViewModel;
 import es.dmoral.toasty.Toasty;
-
+/*
+Actividad principal donde el usuario podra visualizar todos los usuarios y podra abrir un chat
+para iniciar una conversacion.
+ */
 public class UserActivity extends AppCompatActivity {
 
     private UserViewModel userViewModel;
@@ -47,6 +50,7 @@ public class UserActivity extends AppCompatActivity {
         Intent i = getIntent();
         userSession = (UserSession) i.getSerializableExtra("userSession");
 
+        //The welcome + username toolbar text
         TextView welcomeText = findViewById(R.id.welcomeTextview);
         welcomeText.setText("Welcome " + userSession.getUsername());
 
@@ -76,6 +80,13 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
+
+
+    /*
+    Inicia una actividad enviandole la session se usuario y la id del segundo usuario.
+    TODO: Enviar por referencia la instancia de la base de datos.
+        - Evitar que sea instanciada en cada onCreate() de cada actividad de conversacion.
+     */
     private void startConversation(User user){
         Intent intent = new Intent(this,ConversationActivity.class);
         this.userSession.setSecondUserId(user.getUserId());

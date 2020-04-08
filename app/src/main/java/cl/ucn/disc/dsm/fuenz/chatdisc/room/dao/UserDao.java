@@ -21,14 +21,14 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 @Dao
 public interface UserDao {
 
-    // allowing the insert of the same word multiple times by passing a
-    // conflict resolution strategy
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(User user);
 
     @Query("DELETE FROM user_table")
     void deleteAll();
 
+    //TODO: agregar filtro (WHERE NOT IN) para que el usuario logeado no este incluido
     @Query("SELECT * from user_table ORDER BY username ASC")
     LiveData<List<User>> getAllUserOrderByAsc();
 }

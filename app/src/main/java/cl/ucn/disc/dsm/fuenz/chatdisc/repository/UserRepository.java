@@ -29,14 +29,22 @@ public class UserRepository {
      */
     private LiveData<List<User>> allUser;
 
+    /**
+     * The constructor of user repository
+     * TODO: Generar un worker para que sincronice la base de datos local con la del servidor
+     *  -  Agregar metodos a la api call
+     *  -  Generar un metodo de getUser() en MessageReceivedApiService para la peticion de usuarios
+     * @param application
+     */
     public UserRepository(Application application){
         UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
         userDao = db.userDao();
         allUser = userDao.getAllUserOrderByAsc();
     }
 
-    /*
-    Return the LiveData
+    /**
+     * Return a LiveData of {@Link Users}
+     * @return
      */
     public LiveData<List<User>> getAllUser(){
         return allUser;

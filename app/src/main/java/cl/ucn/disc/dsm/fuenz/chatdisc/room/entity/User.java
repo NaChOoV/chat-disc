@@ -15,6 +15,7 @@ import androidx.room.PrimaryKey;
 public class User {
     /*
    The unique user id
+   //FIXME: Eliminar la autogeneracion de id, esta sera generada en el servidor.
     */
     @PrimaryKey(autoGenerate = true)
     private int userId = 0;

@@ -36,6 +36,9 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.MessageViewModel;
 import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.factory.MessageViewModelFactory;
 import es.dmoral.toasty.Toasty;
 
+/**
+ * Conversacion de usuario a usuario.
+ */
 public class ConversationActivity extends AppCompatActivity {
 
     private MessageViewModel messageViewModel;
@@ -100,9 +103,7 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
-
-
-        //The backbutton
+        //The backbutton to return.
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,6 +112,10 @@ public class ConversationActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * End of ConversationActivity
+     * TODO: Enviar una señal al worker para que se detenga y deje de sincronizar mensajes.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

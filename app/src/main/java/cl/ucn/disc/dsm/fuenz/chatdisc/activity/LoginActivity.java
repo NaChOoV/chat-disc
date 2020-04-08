@@ -65,14 +65,11 @@ public class LoginActivity extends AppCompatActivity {
 
             ConnectionHandler connectionHandler = new ConnectionHandler();
 
-            /*
-            FIXME: Agregar esto, q es temporal para iniciar sesion
+
             final Triple<Integer,Integer,String> response
                     = connectionHandler.loginHandler(email,password);
 
-             */
 
-            final Triple<Integer,Integer,String> response = new Triple<Integer,Integer,String>(0,4,"Lavin1");
             switch (response.getFirst()){
                 case 0:
                     Toasty.success(this, "Login succesful", Toast.LENGTH_SHORT, true).show();
@@ -98,9 +95,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        /*
-        En caso de hacer click en registrar, se eliminara la actividad Login y se creara la de registro.
-         */
         btnRegister.setOnClickListener(view -> {
             Intent intent = new Intent(this,RegisterActivity.class);
             startActivity(intent);

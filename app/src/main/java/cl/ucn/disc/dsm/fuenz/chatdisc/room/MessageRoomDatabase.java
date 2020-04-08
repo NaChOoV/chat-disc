@@ -56,6 +56,7 @@ public abstract class MessageRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
+                //FIXME: Eliminar estos metodos.
                 long time = System.currentTimeMillis();
                 Date date =new Date(time);
 
@@ -66,35 +67,7 @@ public abstract class MessageRoomDatabase extends RoomDatabase {
                 MessageDao dao = INSTANCE.messageDao();
                 dao.deleteAll();
 
-                /*
-                dao.insert(new Message(4,
-                        "mis papas son hermanos",
-                        4,
-                        0,
-                        dateFormat.format(date),
-                        -12312,
-                        12313));
 
-                c.setTime(date);
-                c.add(Calendar.MINUTE,1);
-                date = c.getTime();
-
-                dao.insert(new Message(2,
-                        "terrible culiemos",
-                        0,
-                        4,
-                        dateFormat.format(date),
-                        -12312,
-                        12313));
-
-                dao.insert(new Message(3,
-                        "en 2 meses te pago",
-                        4,
-                        1,
-                        dateFormat.format(date),
-                        -12312,
-                        12313));
-                        */
 
 
             });
