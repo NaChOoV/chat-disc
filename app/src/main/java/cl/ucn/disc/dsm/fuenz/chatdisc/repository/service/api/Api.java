@@ -20,8 +20,9 @@ import retrofit2.http.Query;
 
 public interface Api {
 
-  String BASE_URL = "http://127.0.0.1:8000/"; //use php artisan serve , in backend
-
+  String BASE_URL = "http://127.0.0.1:8000/"; //changed to 10.0.0.2:8000
+                                              // but not workin
+                                              //test aprove with this IP
   public String idUser ="";
 
   @GET("conversation")
