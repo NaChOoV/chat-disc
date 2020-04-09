@@ -66,8 +66,10 @@ public class LoginActivity extends AppCompatActivity {
             ConnectionHandler connectionHandler = new ConnectionHandler();
 
 
+
             final Triple<Integer,Integer,String> response
                     = connectionHandler.loginHandler(email,password);
+
 
 
             switch (response.getFirst()){

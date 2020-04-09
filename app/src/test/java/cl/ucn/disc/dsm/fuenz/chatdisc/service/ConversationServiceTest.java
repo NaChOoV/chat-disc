@@ -63,8 +63,8 @@ public class ConversationServiceTest {
   @Test
   public void TestLogin(){
     //correct login
-    String password = "yo";
-    String email = "alvarolucascc96@gmail.com";
+    String password = "pwtest";
+    String email = "emailtest@gmail.com";
     ConnectionHandler connectionHandler = new ConnectionHandler();
     final ConversationService connectionService = new MessageReceivedApiService();
     Triple<Integer,Integer,String> triple =connectionHandler.loginHandler(email,password);

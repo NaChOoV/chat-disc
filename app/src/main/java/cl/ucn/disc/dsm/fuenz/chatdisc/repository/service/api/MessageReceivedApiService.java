@@ -171,7 +171,7 @@ public class MessageReceivedApiService implements ConversationService {
       if (theResult.code == null) {
         throw new ApiException("Status code in RegisterResult was null");
       }
-      log.info(theResult.code);
+
       return Integer.parseInt(theResult.code);
 
     } catch (final IOException ex) {
@@ -206,7 +206,7 @@ public class MessageReceivedApiService implements ConversationService {
                 new HttpException(response)
         );
       }
-      log.debug(response.body().toString());
+
       final LoginResult theResult = response.body();
 
       // No body
@@ -250,7 +250,7 @@ public class MessageReceivedApiService implements ConversationService {
   public List<Conversation> getConversations(int pageSize) {
     // the Call
     final Call<ApiResult> theCall = this.api.getEverything(pageSize);
-    log.debug(theCall.toString());
+
 
     // Process the Call.
     return getConversationsFromCall(theCall);
@@ -273,7 +273,7 @@ public class MessageReceivedApiService implements ConversationService {
   public Triple<Integer, Integer, String> loginUser(String email, String password) {
 
     final Call<LoginResult> theCall = this.api.loginUser(email,password);
-    log.debug(email+ " : "+password);
+
     return getLoginConformationFromCall(theCall);
   }
 
