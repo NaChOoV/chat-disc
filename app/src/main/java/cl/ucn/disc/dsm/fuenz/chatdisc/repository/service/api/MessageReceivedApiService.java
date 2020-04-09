@@ -83,7 +83,7 @@ public class MessageReceivedApiService implements ConversationService {
   }
 
   /**
-   * Get the Conversations from the Call.
+   * Get the Conversations from the Call for ther user.
    *
    * @param theCall to use.
    * @return the {@link List} of {@link Conversation}.
@@ -245,7 +245,7 @@ public class MessageReceivedApiService implements ConversationService {
 
   }
 
-
+// FIXME: La peticion debe enviar la id del usuario logeado
   @Override
   public List<Conversation> getConversations(int pageSize) {
     // the Call

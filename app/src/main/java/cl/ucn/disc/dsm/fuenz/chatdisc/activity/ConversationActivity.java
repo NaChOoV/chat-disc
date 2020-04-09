@@ -17,8 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +36,16 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.MessageViewModel;
 import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.factory.MessageViewModelFactory;
 import es.dmoral.toasty.Toasty;
 
+/**
+ * Conversacion de usuario a usuario.
+ */
 public class ConversationActivity extends AppCompatActivity {
 
     private MessageViewModel messageViewModel;
+
+    private TextView messageTextView;
+
+    private Button sendButton;
 
     private UserSession userSession;
 
@@ -48,6 +58,8 @@ public class ConversationActivity extends AppCompatActivity {
         this.userSession = (UserSession) i.getSerializableExtra("userSession");
 
         TextView welcomeText = findViewById(R.id.toolbar_text);
+        messageTextView = findViewById(R.id.edittext_chatbox);
+        sendButton = findViewById(R.id.button_chatbox_send);
         welcomeText.setText(userSession.getSecondUsername());
 
         //The toolbar
@@ -73,12 +85,39 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
-        //The backbutton
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = messageTextView.getText().toString();
+
+                if(message.isEmpty())
+                    return;
+
+                int userOne = userSession.getUserId();
+                int userTwo = userSession.getSecondUserId();
+
+                messageViewModel.insert(userOne,userTwo,message);
+                messageTextView.setText("");
+
+            }
+        });
+
+        //The backbutton to return.
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+    }
+
+    /**
+     * End of ConversationActivity
+     * TODO: Enviar una señal al worker para que se detenga y deje de sincronizar mensajes.
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

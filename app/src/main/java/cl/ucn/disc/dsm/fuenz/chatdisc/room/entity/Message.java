@@ -20,8 +20,8 @@ public class Message {
     /*
     The unique conversation id
      */
-    @PrimaryKey
-    private final int id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     /*
     The message info
      */
@@ -52,8 +52,7 @@ public class Message {
     /*
     The constructor
      */
-    public Message(int id, String message, int userOne, int userTwo, String time, float latitude, float longitude) {
-        this.id = id;
+    public Message(String message, int userOne, int userTwo, String time, float latitude, float longitude) {
         this.message = message;
         this.userOne = userOne;
         this.userTwo = userTwo;
@@ -90,6 +89,7 @@ public class Message {
         return longitude;
     }
 
-
-
+    public void setId(int id) {
+        this.id = id;
+    }
 }

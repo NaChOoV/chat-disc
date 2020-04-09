@@ -21,7 +21,7 @@ import cl.ucn.disc.dsm.fuenz.chatdisc.room.dao.UserDao;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.Message;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 
-@Database(entities = {Message.class}, version = 1, exportSchema = false)
+@Database(entities = {Message.class}, version = 2, exportSchema = false)
 public abstract class MessageRoomDatabase extends RoomDatabase {
 
     public abstract MessageDao messageDao();
@@ -56,6 +56,7 @@ public abstract class MessageRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
+                //FIXME: Eliminar estos metodos.
                 long time = System.currentTimeMillis();
                 Date date =new Date(time);
 
@@ -65,33 +66,9 @@ public abstract class MessageRoomDatabase extends RoomDatabase {
 
                 MessageDao dao = INSTANCE.messageDao();
                 dao.deleteAll();
-                dao.insert(new Message(1,
-                        "mis papas son hermanos",
-                        1,
-                        2,
-                        dateFormat.format(date),
-                        -12312,
-                        12313));
 
-                c.setTime(date);
-                c.add(Calendar.MINUTE,1);
-                date = c.getTime();
 
-                dao.insert(new Message(2,
-                        "terrible culiemos",
-                        2,
-                        1,
-                        dateFormat.format(date),
-                        -12312,
-                        12313));
 
-                dao.insert(new Message(3,
-                        "en 2 meses te pago",
-                        1,
-                        3,
-                        dateFormat.format(date),
-                        -12312,
-                        12313));
 
             });
 

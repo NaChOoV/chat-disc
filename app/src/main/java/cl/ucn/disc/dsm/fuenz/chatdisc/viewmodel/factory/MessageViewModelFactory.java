@@ -15,6 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import cl.ucn.disc.dsm.fuenz.chatdisc.viewmodel.MessageViewModel;
 
+/**
+ * Para pasar datos al constructor del MessageViewMode es necesario un factory, el cual permitira
+ * pasar nuevos argumentos al constructor
+ */
 public class MessageViewModelFactory implements ViewModelProvider.Factory {
 
     private Application application;

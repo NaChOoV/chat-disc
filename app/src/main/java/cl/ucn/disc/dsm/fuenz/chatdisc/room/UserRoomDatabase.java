@@ -24,7 +24,7 @@ import javax.xml.transform.Result;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.dao.UserDao;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 
-@Database(entities = {User.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class}, version = 3, exportSchema = false)
 public abstract class UserRoomDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -48,6 +48,9 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 }
             }
         }
+
+
+
         return INSTANCE;
     }
 
@@ -64,13 +67,11 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 UserDao dao = INSTANCE.userDao();
                 dao.deleteAll();
 
-                dao.insert(new User(2,
-                        "Prima",
+                dao.insert(new User("Usuario1",
                         "Lavin@lavin.lavin",
                         "lavin"));
 
-                dao.insert(new User(3,
-                        "Nana",
+                dao.insert(new User("Usuario2",
                         "Lavin@lavin.lavin",
                         "lavin"));
 

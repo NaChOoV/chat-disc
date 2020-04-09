@@ -45,6 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.button);
         btnReturn = findViewById(R.id.btnReturn);
 
+
+        //En caso de hacer click
         btnRegister.setOnClickListener(view -> {
 
             String email = editTextEmail.getText().toString();
@@ -56,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
+            // Peticion al servidor
             ConnectionHandler connectionHandler = new ConnectionHandler();
 
             final int code = connectionHandler.registerHandler(email,username,password);

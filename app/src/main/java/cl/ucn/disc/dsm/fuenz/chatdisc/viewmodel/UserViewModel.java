@@ -17,12 +17,21 @@ import java.util.List;
 import cl.ucn.disc.dsm.fuenz.chatdisc.repository.UserRepository;
 import cl.ucn.disc.dsm.fuenz.chatdisc.room.entity.User;
 
+/**
+ * Communication between UI and repository
+ */
 public class UserViewModel extends AndroidViewModel {
-
+    /*
+    The repository
+     */
     private UserRepository userRepository;
-
+    /*
+    The livedata of users
+     */
     private LiveData<List<User>> allUser;
-
+    /*
+    The constructor
+     */
     public UserViewModel (Application application){
         super(application);
         userRepository = new UserRepository(application);
@@ -30,6 +39,10 @@ public class UserViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * get all users from de database
+     * @return
+     */
     public LiveData<List<User>> getAllUser(){
         return allUser;
     }
